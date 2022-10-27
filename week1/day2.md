@@ -71,4 +71,6 @@ $ git cherry-pick <commit-hash>
 <h1 align="center">Git Concepts</h1>  
 
 ## Repository
-Repository is a container that stores everything related to out project. Git is a Version Control System(VCS) or program that tracks changes made to files. After initialization of git it creates ".git" repository which tracks all the changes made on files in our project to build a history over time.
+Repository is a container that stores everything related to out project. Git is a Version Control System(VCS) or program that tracks changes made to files. After initialization of git it creates ".git" repository which tracks all the changes made on files in our project to build a history over time.  
+## branch  
+In git, branch is separate version of out main repository. Branches allow us to work on different parts of the the project without having impact on the main repository. Whenever our work is complete we can merge the current branch into the main repository. We can switch between branches and work on different projects without interfering with each other.  

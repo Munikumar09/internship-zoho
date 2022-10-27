@@ -74,3 +74,24 @@ $ git cherry-pick <commit-hash>
 Repository is a container that stores everything related to out project. Git is a Version Control System(VCS) or program that tracks changes made to files. After initialization of git it creates ".git" repository which tracks all the changes made on files in our project to build a history over time.  
 ## branch  
 In git, branch is separate version of out main repository. Branches allow us to work on different parts of the the project without having impact on the main repository. Whenever our work is complete we can merge the current branch into the main repository. We can switch between branches and work on different projects without interfering with each other.  
+## remote
+A remote repository in Git is also called as remote and it is a Git repository that's hosted on the Internet or another network. It is a common repository that all team members use to exchange their changes on the project. The `git remote` command lets us to create, view, and delete connections to other repositories. It is simply a place to where we have to push the commited changes and from where we can fetch the project files.  
+To list all the remotes configured to the local repository:  
+```
+$ git remote -v
+```
+!['git remote list'](images/remote1.png)
+To add a new remote repository:  
+```
+$ git remote add <remote_repository_name> <remote_repository_address>
+```
+!['git remote add'](images/remote3.png)
+To rename a remote repository:  
+```
+$ git remote rename <old_remote_repository_name> <new_remote_repository_name>
+```
+!['git remote add'](images/remote2.png)
+To delete a remote repository:
+```
+$ git remote remove <remote_repository_name>
+```

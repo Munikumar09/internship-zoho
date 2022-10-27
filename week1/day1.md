@@ -1,4 +1,4 @@
-﻿####Day 1: 26 OCTOBER 2022  	
+####Day 1: 26 OCTOBER 2022  	
 <h1 align="center">GIT COMMANDS</h1>
 
 **User git Configuration:**

@@ -1,13 +1,15 @@
-﻿####Day 1: 26 OCTOBER 2022  	
+﻿#### Day 1: 26 OCTOBER 2022  	
 <h1 align="center">GIT COMMANDS</h1>
 
-**User git Configuration:**
-“git config” command is used to configure the user.
+**User git Configuration:**  
+“git config” command is used to configure the user.  
 To configure user name:
-$ git config --global user.name “user name”$
+`$ git config --global user.name <user_name> `
 To configure user email:
 $ git config –-global user.email “user email”$
-![]('/../images/user_configuration.png)
+
+!['user_configuration']('/../images/user_configuration.png)
+
 
 git initialization:
 git initialization means converting a current working directory into git repository.

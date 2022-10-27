@@ -80,17 +80,17 @@ To list all the remotes configured to the local repository:
 ```
 $ git remote -v
 ```
-!['git remote list'](images/remote1.png)
+!['git remote list'](images/remote1.png)  
 To add a new remote repository:  
 ```
 $ git remote add <remote_repository_name> <remote_repository_address>
 ```
-!['git remote add'](images/remote3.png)
+!['git remote add'](images/remote3.png)  
 To rename a remote repository:  
 ```
 $ git remote rename <old_remote_repository_name> <new_remote_repository_name>
 ```
-!['git remote add'](images/remote2.png)
+!['git remote add'](images/remote2.png)  
 To delete a remote repository:
 ```
 $ git remote remove <remote_repository_name>

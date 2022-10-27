@@ -20,7 +20,7 @@ To apply the specified changes in the stash to the current working directory
 ```
 $ git stash apply <stash_number>
 ```
-!['git stash_number']('/../images/git_stash2.png)
+!['git stash_number']('/../images/git_stash2.png)  
 To apply the last saved changes in the stash to the current working and delete from the stash stack:
 ```
 $ git stash pop

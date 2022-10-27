@@ -1,8 +1,8 @@
 ### Day 1: 26 OCTOBER 2022  	
 <h1 align="center">GIT COMMANDS</h1>
 
-**User git Configuration:** 
-“git config” command is used to configure the user
+**User git Configuration:**  
+“git config” command is used to configure the user  
 To configure user name: 
 ` $ git config --global user.name <user_name> `
 To configure user email: 

@@ -2,9 +2,9 @@
 <h1 align="center">GIT COMMANDS</h1>
 
 **User git Configuration:** 
-“git config” command is used to configure the user 
+“git config” command is used to configure the user
 To configure user name: 
-$ git config --global user.name “user name”$
+` $ git config --global user.name <user_name> `
 To configure user email: 
 $ git config –-global user.email “user email”$ 
 ![]('/../images/user_configuration.png)

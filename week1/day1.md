@@ -26,7 +26,11 @@ To add single file to the stanging area:
 To add more than one file:   
 `$ git add file1 file2`  
 To add all the files of specific type:  
-```$ git add *.py```  
+```
+$ git add *.py
+```  
 To add all the files in the current working directory:  
-```$ git add```  
+```
+$ git add
+```  
 

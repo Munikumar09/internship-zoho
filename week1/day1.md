@@ -171,3 +171,31 @@ To unod or jump to specific commit
 ```
 $ git reset --hard HEAD^
 ```
+!['git reset']('/../images/reset_commits.png)  
+## git rebase  
+Rebasing is the process of moving or combining a sequence of commits to a new base commit. Git rebase rewrites commits from one branch onto another branch and its useful alternative to mergeing because it gives clear repo history.  
+```
+$ git rebase <branch_name>
+```
+!['git reset']('/../images/git_rebase.png)  
+## git log  
+Git log is a utility tool to review and read a history of everything that happens to a repository.  
+```
+$ git log
+```
+To display log details in breif:  
+```
+$ git log --oneline
+```
+To display the changes done in each commit:  
+```
+$ git log --stat
+```
+To graphically represent the repo history:  
+```
+$ git log --graph
+```
+To view some of the latest commits:  
+```
+$ git log -<number>
+```

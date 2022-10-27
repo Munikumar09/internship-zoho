@@ -1,7 +1,7 @@
 ﻿#### Day 1: 26 OCTOBER 2022  	
 <h1 align="center">GIT COMMANDS</h1>
 
-**User git Configuration:**  
+## User git Configuration:  
 “git config” command is used to configure the user.  
 To configure user name:  
 ```
@@ -15,20 +15,20 @@ $ git config –-global user.email <user_email>
 !['user_configuration']('/../images/user_configuration.png)
 
 
-**git initialization:**  
+## git initialization:  
 git initialization means converting a current working directory into git repository. “git init” commad is used to initailize git repository.  
 ```
 $git init
 ```
 !['user_configuration']('/../images/git_init.png)
 
-**git status:**  
+## git status:  
 “git status” command is used to display the state of current working directory and staging area(index file). It simply shows the difference between working tree and index file.  
 ```
 $ git status
 ```
 !['user_configuration']('/../images/git_status.png)  
-**git add:**  
+## git add:  
 to update the changes in the current working tree to the staging area or index file we have to use “git add” command. It also prepare the staged contents to next commit.  
 To add single file to the stanging area:  
 ```
@@ -49,13 +49,13 @@ To add all the files in the current working directory:
 ```
 $ git add .
 ```  
-**git commit**  
+## git commit  
 The "git commit" command captures a snapshot of the project's currently staged changes. flag "m" can be used to write message along with the commit.  
 ```
 $ git commit -m <message>
 ```
 !['git commit']('/../images/commit.png)  
-**git diff**  
+## git diff  
 git diff lists out the changes between your current working directory and your staging area.  
 ```
 $ git diff
@@ -66,7 +66,7 @@ to compare two commits we have to use their hash value
 $ git diff <commit1_hash> <commit2_hash>
 ```  
 !['git diff']('/../images/diff_commit.png)  
-**git branch**  
+## git branch  
 a branch is a new/separate version of the main repository. Branches allow us to work on different parts of a project without impacting the main branch. When the work is complete, a branch can be merged with the main project.
 Head branch is currently active branch or checkout branch  
 We have to use branch keyword to create a new branch
@@ -96,7 +96,7 @@ deleting a local branch
 $ git branch -d <branch_name>
 ```
 !['git branch']('/../images/remote_branch.png)  
-**git checkout**  
+## git checkout  
 "git checkout" command allow us to navigate between the different branches created by the git branch command.  
 To switch between branches
 ```
@@ -107,7 +107,7 @@ To create a branch and navigate to it
 $ git checkout -b <branch_name>
 ```
 !['git checkout']('/../images/checkout.png)  
-**git fetch**  
+## git fetch  
 The git fetch command downloads commits, files, and refs from a remote repository into your local repo. It fetches branches and tags from one or more repositories.
 To fetch from the currently configured remote repository  
 ```
@@ -122,7 +122,7 @@ To fetch from the all the registered remote repositories
 $ git fetch all
 ```
 !['git fetch']('/../images/fetch.png)  
-**git pull**  
+## git pull  
 The git pull command is used to fetch and download content from a remote repository and immediately update the local repository to match that content.  
 git pull= git fetch + git merge  
 To fetch from the currently configured remote repository  
@@ -138,7 +138,7 @@ Gives verbose output during a pull which displays the content being downloaded a
 $ git pull --verbose
 ```
 !['git pull']('/../images/pull.png)  
-**git push**  
+## git push  
 The git push command is used to upload local repository content to a remote repository.  
 To push content to a remote repository  
 ```
@@ -153,14 +153,14 @@ push only modified files
 $ git push -u <remote>
 ```
 !['user_configuration']('/../images/push.png)  
-**git merge**  
+## git merge  
 The git merge command lets you take the independent lines of development created by git branch and integrate them into a single branch.
 Git merge will combine multiple sequences of commits into one unified history.
 ```
 $ git merge <branch_name>
 ```
 !['git merge']('/../images/git_merge.png)  
-**git reset**  
+## git reset  
 "git reset" command is used to undo local changes to the state of a Git repo. It is also used to undo the commits.
 To clear the stagin area  
 ```

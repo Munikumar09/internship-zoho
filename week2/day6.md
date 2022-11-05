@@ -11,20 +11,20 @@ a=np.array([
     [16,17,18,19,20],
     [21,22,23,24,25]
 ])
-```
+```  
 To create a numpy array from python list:  
-```
+```  
 l=[1,2,3,4]
 a=np.array(l)
-```
+```  
 To get dimension of an array:  
 ```
 a.shape()
-```
+```  
 To get total number of elements in an array:  
 ```
 a.size()
-```
+```  
 To access the elements of an array:  
 for 1-d array:  
 ```

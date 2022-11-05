@@ -1,6 +1,7 @@
 ## week 2: day 6  
 #### 5 november 2022 
-<h1 align="center"> Numpy</h1>
+<h1 align="center"> Numpy</h1>  
+
 NumPy is a Python library used for working with arrays. numpy array operations are very fast as compared to list in python.  
 To create a numpy array:  
 ```

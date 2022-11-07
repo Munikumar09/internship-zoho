@@ -1,6 +1,7 @@
 ## week 2: day 6  
 #### 5 november 2022 
-<h1 align="center"> Numpy</h1>
+<h1 align="center"> Numpy</h1>  
+
 NumPy is a Python library used for working with arrays. numpy array operations are very fast as compared to list in python.  
 To create a numpy array:  
 ```
@@ -11,20 +12,20 @@ a=np.array([
     [16,17,18,19,20],
     [21,22,23,24,25]
 ])
-```
+```  
 To create a numpy array from python list:  
-```
+```  
 l=[1,2,3,4]
 a=np.array(l)
-```
+```  
 To get dimension of an array:  
 ```
 a.shape()
-```
+```  
 To get total number of elements in an array:  
 ```
 a.size()
-```
+```  
 To access the elements of an array:  
 for 1-d array:  
 ```

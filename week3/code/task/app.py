@@ -3,8 +3,8 @@ import streamlit as st
 import altair as alt
 path_to_data={"conformer beam":"/app/internship-zoho/week3/code/task/data/conformer_beam_overall_summary.jsonl",
               "conformer greedy":"/app/internship-zoho/week3/code/task/data/conformer_greedy_overall_summary.jsonl",
-              "w2l beam":"data/w2l_beam_overall_summary.jsonl",
-              "w2l greedy":"data/w2l_greedy_overall_summary.jsonl"}
+              "w2l beam":"/app/internship-zoho/week3/code/task/data/w2l_beam_overall_summary.jsonl",
+              "w2l greedy":"/app/internship-zoho/week3/code/task/data/w2l_greedy_overall_summary.jsonl"}
 def display_dataframes(options:list):
     df_1=pd.read_json(path_to_data[options[0]],lines=True)
     df_2=pd.read_json(path_to_data[options[1]],lines=True)

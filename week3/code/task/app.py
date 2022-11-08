@@ -1,8 +1,8 @@
 import pandas as pd
 import streamlit as st
 import altair as alt
-path_to_data={"conformer beam":"data//conformer_beam_overall_summary.jsonl",
-              "conformer greedy":"data//conformer_greedy_overall_summary.jsonl",
+path_to_data={"conformer beam":"/app/internship-zoho/week3/code/task/data/conformer_beam_overall_summary.jsonl",
+              "conformer greedy":"/app/internship-zoho/week3/code/task/data/conformer_greedy_overall_summary.jsonl",
               "w2l beam":"data/w2l_beam_overall_summary.jsonl",
               "w2l greedy":"data/w2l_greedy_overall_summary.jsonl"}
 def display_dataframes(options:list):

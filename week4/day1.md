@@ -167,7 +167,7 @@ match term:
         action-default
 ```
 *Problem set solution are placed inside code folder.*  
-<h1 align="center"> Iterative Statements or Loops</h1>  
+<h1 align="center"> Iterative Statements or Loops </h1>  
 
 If we want to execute a group of statements multiple times then we should have to use
 Iterative statements.  

@@ -1,6 +1,8 @@
 ## week 4: day 2  
-#### 15 november 2022 
+#### 15 november 2022  
+
 <h1 align="center"> Libraries </h1>  
+
 Generally, libraries are lines of code written by you or others can you can use in your program.  
 Python allows you to share functions or features with others as “modules”.  
 ### Random  

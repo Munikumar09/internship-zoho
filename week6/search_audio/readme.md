@@ -3,7 +3,8 @@ elasticsearch
 ## To install elasticsearch
 1. Download elasticsearch from https://www.elastic.co/downloads/enterprise-search
 2. extract the downloaded file and move inside it
-3. run bin/elasticsearch command
+3. run bin/elasticsearch command  
+
 **Note** To run elasticsearch cluster jvm is required. Install openjdk
 ## To run application  
 options:  

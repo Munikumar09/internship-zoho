@@ -1,8 +1,11 @@
 from pathlib import Path
-from elastic_transport import ObjectApiResponse
 from typing import List
-from connection import client, index
+
 import urllib3
+from elastic_transport import ObjectApiResponse
+
+from connection import client, index
+
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 AUDIO_FILE_DIR = "audio"
 # creates an index if not alread exists
@@ -31,7 +34,7 @@ def add_all_data() -> None:
         client.indices.delete(index=index)
     if not client.indices.exists(index=index):
         create_index()
-    path:Path = Path.cwd() / AUDIO_FILE_DIR
+    path: Path = Path.cwd() / AUDIO_FILE_DIR
     for audio in path.iterdir():
         doc: dict = {
             "audio_name": ((audio.name).split("."))[0],
@@ -54,7 +57,7 @@ def get_audio_file_path(name: str) -> List[str]:
         index=index,
         body={"query": {"match": {"audio_name": {"query": name, "fuzziness": "AUTO"}}}},
     )
-    matched_audios:List[str] = []
+    matched_audios: List[str] = []
     for file in res["hits"]["hits"]:
         audio = file["_source"]["audio_path"]
         matched_audios.append(audio)

@@ -1,8 +1,10 @@
-import streamlit as st
 import argparse
 from typing import List
-from add_audio_data import extract_audio_files, copy_audio_files, load_data
-from elastic_search_utils import get_audio_file_path, add_all_data
+
+import streamlit as st
+
+from add_audio_data import copy_audio_files, extract_audio_files, load_data
+from elastic_search_utils import add_all_data, get_audio_file_path
 
 ss = st.session_state
 if "audio" not in ss:
@@ -29,7 +31,11 @@ def display_main_page():
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--recursive-files", "-r", help="File path to recersively search and extract audio files")
+    parser.add_argument(
+        "--recursive-files-extraction",
+        "-r",
+        help="File path to recersively search and extract audio files",
+    )
     parser.add_argument(
         "--audio-path-file", "-f", help="Path to the audio file (tar format)"
     )
@@ -49,8 +55,8 @@ if __name__ == "__main__":
                 ss["audio"] = extract_audio_files(args.audio_path_file)
             elif args.audio_path_dir:
                 ss["audio"] = copy_audio_files(args.audio_path_dir)
-            elif args.audio_path_regex:
-                ss["audio"] = load_data(args.audio_path_regex)
+            elif args.recursive_files_extraction:
+                ss["audio"] = load_data(args.recursive_files_extraction)
         if ss["files"] == False:
             ss["files"] = add_all_data()
     display_main_page()

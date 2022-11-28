@@ -1,11 +1,12 @@
-from pathlib import Path
-import tarfile
-from tarfile import TarFile
-import shutil
-import re
-from re import Match
-from elastic_search_utils import AUDIO_FILE_DIR
 import os
+import re
+import shutil
+import tarfile
+from pathlib import Path
+from re import Match
+from tarfile import TarFile
+
+from elastic_search_utils import AUDIO_FILE_DIR
 
 global DELETE_EXISTING_AUDIO_DIR
 DELETE_EXISTING_AUDIO_DIR = True

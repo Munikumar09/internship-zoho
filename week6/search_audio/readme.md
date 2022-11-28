@@ -7,7 +7,7 @@ elasticsearch
 **Note** To run elasticsearch cluster jvm is required. Install openjdk
 ## To run application
 options:
-  --recursive-files, -r
+  --recursive-files-extraction, -r
                     File path to recersively search and extract audio files
     ```
     eg:  

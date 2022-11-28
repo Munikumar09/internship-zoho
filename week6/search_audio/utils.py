@@ -24,9 +24,7 @@ def add_all_data() -> None:
     Adds all the data from audio folder to the index
     """
     path = Path.cwd() / "audio"
-    print(path)
-    for ind, audio in enumerate(path.iterdir()):
-        print(ind)
+    for audio in path.iterdir():
         doc: dict = {"name": ((audio.name).split("."))[0], "audio": str(audio)}
         add_document(doc=doc)
 

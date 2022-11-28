@@ -7,19 +7,22 @@ elasticsearch
 **Note** To run elasticsearch cluster jvm is required. Install openjdk
 ## To run application  
 options:  
-  --recursive-files-extraction, -r  
+
+--recursive-files-extraction, -r  
                     File path to recersively search and extract audio files  
     ```
     eg:  
     streamlit run app.py -- -r "/home/local/user/zspeech/datasets/asr/evalution/en"
     ```
-  --audio-path-file, -f  
+
+--audio-path-file, -f  
                         Path to the audio file (tgz format)  
     ```
     eg:  
     streamlit run app.py -- -f "/home/local/user/Desktop/audio/accent.tgz"
     ```
-  --audio-path-dir , -d   
+
+--audio-path-dir , -d   
                         Path to the directory that contain the audio files  
     ```
     eg:  

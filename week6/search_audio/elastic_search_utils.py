@@ -1,8 +1,11 @@
 from pathlib import Path
 from typing import List
+
 from elastic_transport import ObjectApiResponse
+
+from connection import INDEX, client
 from utils import AUDIO_FILE_DIR
-from connection import client, INDEX
+
 
 # creates an index if not alread exists
 def create_index():
@@ -19,7 +22,9 @@ def add_document(doc: dict) -> None:
     Args:
         doc (dict): Document to add into the index
     """
-    client.index(index=INDEX, body=doc)
+    client.index(index=INDEX, document=doc)
+
+
 def add_all_data() -> bool:
     """
     Adds all the data from local audio folder to the elasticsearch cluster index

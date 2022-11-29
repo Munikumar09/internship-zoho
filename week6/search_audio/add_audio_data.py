@@ -5,8 +5,9 @@ import tarfile
 from pathlib import Path, PurePath, PurePosixPath
 from re import Match
 from tarfile import TarFile
-from utils import AUDIO_FILE_DIR, State
 from typing import List
+
+from utils import AUDIO_FILE_DIR, State
 
 
 def delete_existing_audio_dir() -> None:
@@ -17,6 +18,7 @@ def delete_existing_audio_dir() -> None:
     for file in curr_path.iterdir():
         if file.name == AUDIO_FILE_DIR:
             shutil.rmtree(file)
+
 
 def extract_audio_files(file_path: Path, delete_existing_dir: bool = True) -> bool:
     """
@@ -68,7 +70,8 @@ def tarfile_pattern_match(file_path: str) -> (Match[str] | None):
     """
     return re.search(r"[a-zA-Z0-9_ -]+\.tgz$", file_path)
 
-def fetch_audio_data(file_path_str: str)->None:
+
+def fetch_audio_data(file_path_str: str) -> None:
     """
     This function recursively finds the tar fils and extract them into local audio directory
     Args:
@@ -123,7 +126,7 @@ def match_file_regex_pattern(regex_str: str, file_path: str) -> (Match[str] | No
 
     Args:
         regex_str (str): regular expression string
-        file_path (str): file path to match with regex_str 
+        file_path (str): file path to match with regex_str
 
     Returns:
         Match[str] | None: if pattern matches return matched patter else None
@@ -133,12 +136,12 @@ def match_file_regex_pattern(regex_str: str, file_path: str) -> (Match[str] | No
 
 def add_audio_files_with_regex(regex_str: str, path: Path) -> None:
     """
-    Extract the compressed tgz files and add extracted files into local audio directory 
+    Extract the compressed tgz files and add extracted files into local audio directory
     if and only if that compressed file match the given regex pattern
 
     Args:
         regex_str (str): regular expression string
-        path (Path): file path 
+        path (Path): file path
     """
     if path.is_file():
         if match_file_regex_pattern(regex_str, str(path)):
@@ -160,7 +163,7 @@ def regex_to_path(regex_str: str) -> Path:
         Path: inital Path to start search
     """
     path_split_list: List[str] = regex_str.split("/")
-    path: PurePosixPath = PurePath("/")
+    path: PurePath = PurePath("/")
     for dir in range(len(path_split_list) - 1):
         path_split_list[dir] = path_split_list[dir].strip("()*_- ")
         path = path.joinpath(path_split_list[dir])

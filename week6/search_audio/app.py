@@ -2,15 +2,13 @@ import argparse
 from typing import List
 
 import streamlit as st
-from utils import State
-from add_audio_data import (
-    copy_audio_files,
-    extract_audio_files,
-    load_data_recersively_from_folders,
-    load_data_with_regex,
-    filter_audio_data
-)
+
+from add_audio_data import (copy_audio_files, extract_audio_files,
+                            filter_audio_data,
+                            load_data_recersively_from_folders,
+                            load_data_with_regex)
 from elastic_search_utils import add_all_data, get_audio_file_path
+from utils import State
 
 # set the application title
 st.set_page_config("Audio Search")

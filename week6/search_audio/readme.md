@@ -13,7 +13,8 @@ options:
     ```
     eg:  
     streamlit run app.py -- -re  "/home/local/user/Desktop(/[\w-]*){3,5}\.(tgz)$"
-    ```
+    ```  
+
 --recursive-files-extraction, -r  
                     File path to recursively search and extract audio files  
     ```

@@ -1,38 +1,32 @@
 from pathlib import Path
 from typing import List
-
-import urllib3
 from elastic_transport import ObjectApiResponse
+from utils import AUDIO_FILE_DIR
+from connection import client, INDEX
 
-from connection import client, index
-
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-AUDIO_FILE_DIR = "audio"
 # creates an index if not alread exists
 def create_index():
     """
     creates an index in the local elastic search cluster
     """
-    client.indices.create(index=index)
+    client.indices.create(index=INDEX)
 
 
 def add_document(doc: dict) -> None:
     """
-    Adds the individual document to the index
+    Adds the individual document to the elasticsearch cluster index
 
     Args:
-        doc (dict): Document to add to the index
+        doc (dict): Document to add into the index
     """
-    client.index(index=index, body=doc)
-
-
-def add_all_data() -> None:
+    client.index(index=INDEX, body=doc)
+def add_all_data() -> bool:
     """
-    Adds all the data from local audio folder to the index
+    Adds all the data from local audio folder to the elasticsearch cluster index
     """
-    if client.indices.exists(index=index):
-        client.indices.delete(index=index)
-    if not client.indices.exists(index=index):
+    if client.indices.exists(index=INDEX):
+        client.indices.delete(index=INDEX)
+    if not client.indices.exists(index=INDEX):
         create_index()
     path: Path = Path.cwd() / AUDIO_FILE_DIR
     for audio in path.iterdir():
@@ -41,6 +35,7 @@ def add_all_data() -> None:
             "audio_path": str(audio),
         }
         add_document(doc=doc)
+    return True
 
 
 def get_audio_file_path(name: str) -> List[str]:
@@ -53,12 +48,12 @@ def get_audio_file_path(name: str) -> List[str]:
     Returns:
         str: audio path
     """
-    res: ObjectApiResponse = client.search(
-        index=index,
+    response: ObjectApiResponse = client.search(
+        index=INDEX,
         body={"query": {"match": {"audio_name": {"query": name, "fuzziness": "AUTO"}}}},
     )
     matched_audios: List[str] = []
-    for file in res["hits"]["hits"]:
+    for file in response["hits"]["hits"]:
         audio = file["_source"]["audio_path"]
         matched_audios.append(audio)
     return matched_audios

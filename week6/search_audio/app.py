@@ -2,15 +2,17 @@ import argparse
 from typing import List
 
 import streamlit as st
-
-from add_audio_data import copy_audio_files, extract_audio_files, load_data
+from utils import State
+from add_audio_data import (
+    copy_audio_files,
+    extract_audio_files,
+    load_data_recersively_from_folders,
+    load_data_with_regex,
+    filter_audio_data
+)
 from elastic_search_utils import add_all_data, get_audio_file_path
 
-ss = st.session_state
-if "audio" not in ss:
-    ss["audio"] = False
-if "files" not in ss:
-    ss["files"] = False
+# set the application title
 st.set_page_config("Audio Search")
 
 
@@ -29,7 +31,7 @@ def display_main_page():
                     st.audio(data=audio_file, format="audio/wav")
 
 
-def parse_args():
+def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--recursive-files-extraction",
@@ -44,19 +46,25 @@ def parse_args():
         "-d",
         help="Path to the directory that contain the audio files",
     )
+    parser.add_argument("--regex", "-re", help="Add files with regular expression")
     return parser.parse_args()
 
 
 if __name__ == "__main__":
     with st.spinner("Please wait while data is loading..."):
         args = parse_args()
-        if ss["audio"] == False:
+        if State.audio_files_loaded == False:
             if args.audio_path_file:
-                ss["audio"] = extract_audio_files(args.audio_path_file)
+                State.audio_files_loaded = extract_audio_files(args.audio_path_file)
             elif args.audio_path_dir:
-                ss["audio"] = copy_audio_files(args.audio_path_dir)
+                State.audio_files_loaded = copy_audio_files(args.audio_path_dir)
             elif args.recursive_files_extraction:
-                ss["audio"] = load_data(args.recursive_files_extraction)
-        if ss["files"] == False:
-            ss["files"] = add_all_data()
+                State.audio_files_loaded = load_data_recersively_from_folders(
+                    args.recursive_files_extraction
+                )
+            elif args.regex:
+                State.audio_files_loaded = load_data_with_regex(args.regex)
+            filter_audio_data()
+        if State.files_added_to_elastcsearch == False:
+            State.files_added_to_elastcsearch = add_all_data()
     display_main_page()

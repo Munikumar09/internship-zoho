@@ -1,5 +1,8 @@
+"""
+This module provide functionalities to add, search files from elasticsearch
+"""
 from pathlib import Path
-from typing import List
+from typing import Any, List
 
 from elastic_transport import ObjectApiResponse
 
@@ -45,7 +48,8 @@ def add_all_data() -> bool:
 
 def get_audio_file_path(name: str) -> List[str]:
     """
-    Takes the audio file name as input and returns the list of audio file paths if they exists else empty list
+    Takes the audio file name as input and returns the list of audio file paths
+    if they exists else empty list
 
     Args:
         name (str): audio file name
@@ -53,7 +57,7 @@ def get_audio_file_path(name: str) -> List[str]:
     Returns:
         str: audio path
     """
-    response: ObjectApiResponse = client.search(
+    response: ObjectApiResponse[Any] = client.search(
         index=INDEX,
         body={"query": {"match": {"audio_name": {"query": name, "fuzziness": "AUTO"}}}},
     )

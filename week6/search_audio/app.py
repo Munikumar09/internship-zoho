@@ -1,3 +1,6 @@
+"""
+Display the main page of streamlit application.
+"""
 import argparse
 from typing import List
 
@@ -15,6 +18,9 @@ st.set_page_config("Audio Search")
 
 
 def display_main_page():
+    """
+    Display the main page with text_input widget to get the audio flile name as input
+    """
     audio_name: str = st.text_input("Please enter audio file name to search: ")
     if audio_name:
         audio_path_list: List[str] = get_audio_file_path(audio_name)
@@ -30,6 +36,12 @@ def display_main_page():
 
 
 def parse_args() -> argparse.Namespace:
+    """
+    Process the command line arguments
+
+    Returns:
+        argparse.Namespace: parsed args
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--recursive-files-extraction",
@@ -51,7 +63,7 @@ def parse_args() -> argparse.Namespace:
 if __name__ == "__main__":
     with st.spinner("Please wait while data is loading..."):
         args = parse_args()
-        if State.audio_files_loaded == False:
+        if State.audio_files_loaded is False:
             if args.audio_path_file:
                 State.audio_files_loaded = extract_audio_files(args.audio_path_file)
             elif args.audio_path_dir:
@@ -63,6 +75,6 @@ if __name__ == "__main__":
             elif args.regex:
                 State.audio_files_loaded = load_data_with_regex(args.regex)
             filter_audio_data()
-        if State.files_added_to_elastcsearch == False:
+        if State.files_added_to_elastcsearch is False:
             State.files_added_to_elastcsearch = add_all_data()
     display_main_page()

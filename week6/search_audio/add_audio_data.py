@@ -1,11 +1,12 @@
+"""
+Provide the functionalities that are required to extract and load audio files
+"""
 import os
 import re
 import shutil
 import tarfile
-from pathlib import Path, PurePath, PurePosixPath
-from re import Match
-from tarfile import TarFile
-from typing import List
+from pathlib import Path, PurePath
+from typing import Any, List, Match, Optional
 
 from utils import AUDIO_FILE_DIR, State
 
@@ -22,24 +23,26 @@ def delete_existing_audio_dir() -> None:
 
 def extract_audio_files(file_path: Path, delete_existing_dir: bool = True) -> bool:
     """
-    Extract the audio files from provided file path and stores all the extracted audio files in local audio directory
+    Extract the audio files from provided file path and stores all the extracted
+    audio files in local audio directory
 
     Args:
         file_path (Path): file path to extract audio files from
-        delete_existing_dir (bool, optional): deletes the local audio directory if exits. Defaults to True.
+        delete_existing_dir (bool, optional): deletes the local audio directory if exits.
+        Defaults to True.
 
     Returns:
         bool: return True if successfully audio files were extracted
     """
     if delete_existing_dir:
         delete_existing_audio_dir()
-    tar_file: TarFile = tarfile.open(file_path)
-    try:
-        tar_file.extractall(f"./{AUDIO_FILE_DIR}")
-    except Exception as e:
-        print(e)
-    finally:
-        tar_file.close()
+    with tarfile.open(file_path) as tar_file:
+        try:
+            tar_file.extractall(f"./{AUDIO_FILE_DIR}")
+        except KeyError as key_error:
+            print(key_error)
+        finally:
+            tar_file.close()
     return True
 
 
@@ -59,7 +62,7 @@ def copy_audio_files(file_path: str) -> bool:
     return True
 
 
-def tarfile_pattern_match(file_path: str) -> (Match[str] | None):
+def tarfile_pattern_match(file_path: str) -> Optional[Match[Any]]:
     """
     This function checks the given file is tar file or not with regex
     Args:
@@ -87,7 +90,7 @@ def fetch_audio_data(file_path_str: str) -> None:
             fetch_audio_data(str(file))
 
 
-def audio_pattern_match(file: str) -> (Match[str] | None):
+def audio_pattern_match(file: str) -> Optional[Match[Any]]:
     """
     This function checks the given file is audio file or not with regex
     Args:
@@ -101,7 +104,8 @@ def audio_pattern_match(file: str) -> (Match[str] | None):
 
 def filter_audio_data() -> None:
     """
-    filter audio files from the local audio directory(some tar files contain other files along with audio files)
+    filter audio files from the local audio directory
+    (some tar files contain other files along with audio files)
     """
     audio_path: Path = Path.cwd() / AUDIO_FILE_DIR
     for file in audio_path.iterdir():
@@ -120,7 +124,7 @@ def load_data_recersively_from_folders(file_path_str: str) -> bool:
     return True
 
 
-def match_file_regex_pattern(regex_str: str, file_path: str) -> (Match[str] | None):
+def match_file_regex_pattern(regex_str: str, file_path: str) -> Optional[Match[Any]]:
     """
     Validates given regex pattern against file path
 
@@ -154,7 +158,8 @@ def add_audio_files_with_regex(regex_str: str, path: Path) -> None:
 
 def regex_to_path(regex_str: str) -> Path:
     """
-    constructs the initial path (from here searching and regex validation starts) from the given regex
+    constructs the initial path (from here searching and regex validation starts)
+    from the given regex
 
     Args:
         regex_str (str): regular expression string
@@ -164,9 +169,9 @@ def regex_to_path(regex_str: str) -> Path:
     """
     path_split_list: List[str] = regex_str.split("/")
     path: PurePath = PurePath("/")
-    for dir in range(len(path_split_list) - 1):
-        path_split_list[dir] = path_split_list[dir].strip("()*_- ")
-        path = path.joinpath(path_split_list[dir])
+    for i in range(len(path_split_list) - 1):
+        path_split_list[i] = path_split_list[i].strip("()*_- ")
+        path = path.joinpath(path_split_list[i])
     return Path(path)
 
 

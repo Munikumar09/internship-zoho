@@ -2,6 +2,7 @@
 provide utility members
 """
 AUDIO_FILE_DIR = "audio"
+# pylint: disable=R0903
 
 
 class State:

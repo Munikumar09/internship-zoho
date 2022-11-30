@@ -59,7 +59,7 @@ def get_audio_file_path(name: str) -> List[str]:
     """
     response: ObjectApiResponse[Any] = client.search(
         index=INDEX,
-        body={"query": {"match": {"audio_name": {"query": name, "fuzziness": "AUTO"}}}},
+        query={"match": {"audio_name": {"query": name, "fuzziness": "AUTO"}}},
     )
     matched_audios: List[str] = []
     for file in response["hits"]["hits"]:

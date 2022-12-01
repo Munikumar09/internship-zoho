@@ -6,16 +6,32 @@ from typing import Any, List
 
 from elastic_transport import ObjectApiResponse
 
-from connection import INDEX, client
-from utils import AUDIO_FILE_DIR
+from connection import client
+from constants import AUDIO_FILE_DIR, INDEX, TEMP_AUDIO_DIR
 
 
-# creates an index if not alread exists
+def is_document_exists(document_name: str) -> List[str]:
+    """
+    check whether a document exists in the elasticsearch cluster or not,
+    if exists it returns the list of documents that are exists with given document name
+    Args:
+        document_name (str): document name to search
+
+    Returns:
+        List[str]: list of documents
+    """
+    res = client.search(
+        index=INDEX,
+        query={"match": {"audio_name": {"query": document_name, "fuzziness": "AUTO"}}},
+    )
+    return res["hits"]["hits"]
+
+
 def create_index():
     """
     creates an index in the local elastic search cluster
     """
-    client.indices.create(index=INDEX)
+    client.indices.create(index=INDEX, ignore=400)
 
 
 def add_document(doc: dict) -> None:
@@ -30,19 +46,19 @@ def add_document(doc: dict) -> None:
 
 def add_all_data() -> bool:
     """
-    Adds all the data from local audio folder to the elasticsearch cluster index
+    Adds all the data from local temp folder to the elasticsearch cluster index
     """
-    if client.indices.exists(index=INDEX):
-        client.indices.delete(index=INDEX)
-    if not client.indices.exists(index=INDEX):
-        create_index()
-    path: Path = Path.cwd() / AUDIO_FILE_DIR
+    path: Path = Path.cwd() / TEMP_AUDIO_DIR
     for audio in path.iterdir():
-        doc: dict = {
-            "audio_name": ((audio.name).split("."))[0],
-            "audio_path": str(audio),
-        }
-        add_document(doc=doc)
+
+        is_document = is_document_exists(((audio.name).split("."))[0])
+        if len(is_document) == 0:
+
+            doc: dict = {
+                "audio_name": ((audio.name).split("."))[0],
+                "audio_path": AUDIO_FILE_DIR + "/" + audio.name,
+            }
+            add_document(doc=doc)
     return True
 
 

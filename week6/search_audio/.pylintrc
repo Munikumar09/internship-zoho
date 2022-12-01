@@ -1,0 +1,2 @@
+[Master]
+disable = E1123 # Unexpected keyword argument

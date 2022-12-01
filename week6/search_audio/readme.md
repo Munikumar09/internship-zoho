@@ -1,7 +1,7 @@
 ## Prerequisites
 elasticsearch software
 ## To install elasticsearch
-1. Download elasticsearch from https://www.elastic.co/downloads/enterprise-search
+1. Download elasticsearch from https://www.elastic.co/downloads/elasticsearch
 2. extract the downloaded file and move inside it
 3. run bin/elasticsearch command  
 
@@ -13,7 +13,7 @@ regular expression that represents the file path to add files
     eg:  
     /home/local/user/Desktop(/[\w-]*){3,5}\.(tgz)$ re
 ```  
-Normal source file path to add audio files:
+Normal source file path to add audio files:  
 ```
     eg:
     /home/local/user/Desktop/zspeech/datasets/asr/en
